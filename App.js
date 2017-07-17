@@ -6,19 +6,25 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      inputValue: "Hi"
+      inputValue: ""
     }
   }
   render() {
+    let tip = "";
+    if(this.state.inputValue) {
+      tip = parseFloat(this.state.inputValue) * 0.2;
+      tip = Math.round(tip * 100 / 100).toFixed(2);
+    }
     return (
       <View style={styles.container}>
         <Text>
-          {this.state.inputValue}
+          {tip}
         </Text>
         <TextInput 
-          placeholder='Enter bill total'
+          placeholder= "Enter bill total"
           value={this.state.inputValue} 
           style={styles.input}
+          keyboardType= "numeric"
           onChangeText={(text) => this.setState({inputValue: text})} 
         />
       </View>
